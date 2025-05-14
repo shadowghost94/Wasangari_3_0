@@ -10,7 +10,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 #fichiers static
 STATIC_URL = '/static/'
-
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'frontend/static'),
 ]
@@ -97,17 +96,17 @@ DATABASES = {
     'default': dj_database_url.parse(config('DATABASE_URL'))
 }
 
+AWS_ACCESS_KEY_ID = config('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY_ID = config('AWS_SECRET_ACCESS_KEY_ID')
+AWS_STORAGE_BUCKET_NAME = 'wassangari-bucket'
+AWS_S3_SIGNATURE_NAME = 's3v4'
+AWS_S3_REGION_NAME = 'eu-central-003'
+AWS_S3_FILE_OVERWRITE = False
+AWS_DEFAULT_ACL = 'public-read'
+AWS_S3_VERITY = True
+DEFAULT_FILE_STORAGE = 'Wasangari.storage_backends.PublicMediaStorage'
+AWS_S3_ENDPOINT_URL = 'https://s3.eu-central-003.backblazeb2.com'
 
-#AWS_ACCESS_KEY_ID = config('AWS_ACCESS_KEY_ID')
-#AWS_SECRET_ACCESS_KEY_ID = config('AWS_SECRET_ACCESS_KEY_ID')
-#AWS_STORAGE_BUCKET_NAME = 'wassangari-bucket'
-#AWS_S3_SIGNATURE_NAME = 's3v4'
-#AWS_S3_REGION_NAME = 'eu-central-003'
-#AWS_S3_FILE_OVERWRITE = False
-#AWS_DEFAULT_ACL = 'public-read'
-#AWS_S3_VERITY = True
-#DEFAULT_FILE_STORAGE = 'Wasangari.storage_backends.PublicMediaStorage'
-#AWS_S3_ENDPOINT_URL = 'https://s3.eu-central-003.backblazeb2.com'
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
@@ -138,10 +137,6 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 
 USE_TZ = True
-
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 
 # media files
