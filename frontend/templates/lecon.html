@@ -1,0 +1,255 @@
+{% extends "base.html" %} {% load static %} {% block corpsDeLaPage %}
+<div class="lecon">
+    <button onClick="cours()">Cours</button>
+    <button onClick="infos()">Infos du cours</button>
+    <button onClick="discussion()">Discussion</button>
+    <button onClick="progression()">Progression</button>
+    <button onClick="faq()">FAQ</button>
+</div>
+<div class="cours infos discussionn faqq progressions menus-options">
+    <div class="section-lecon">
+        <div class="sidebar-lecon col-lg-3">
+            <ul>
+                <!-- Glossaire -->
+                <li class="theonesubtitles">
+                    <span class="title" onclick="toggleSubtitles('title', this)"
+                        ><i class="fa-solid fa-caret-right"></i> Glossaire</span
+                    >
+                    <ul class="subtitles" id="title">
+                        <li
+                            data-glossaire="{{cours.glossaire}}"
+                            onclick="loadContent(this)"
+                        >
+                            Glossaire
+                        </li>
+                    </ul>
+                </li>
+                <!-- Grand titre 1 -->
+                {% for semaine in semaines%}
+                <li class="theonesubtitles">
+                    <span
+                        class="title"
+                        onclick="toggleSubtitles('title{{semaine.id}}', this)"
+                        ><i class="fa-solid fa-caret-right"></i> Semaine
+                        {{semaine.id}} - {{semaine.titre}}</span
+                    >
+                    <ul class="subtitles" id="title{{semaine.id}}">
+                        {% for lecon in lecons %}
+                        <span
+                            >{% if lecon.semaine == semaine %}
+                            <li
+                                onclick="loadContainer('{{lecon.titre}}${{lecon.video}}${{lecon.pdf}}')"
+                            >
+                                Leçon {{lecon.id}} - {{lecon.titre}}
+                            </li>
+                            {% endif %}
+                        </span>
+                        {% endfor %}
+                    </ul>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="content-lecon col-lg-9" id="content-lecon">
+            <h1>Bienvenue</h1>
+            <p>
+                Sélectionnez un titre ou sous-titre pour afficher son contenu
+                ici.
+            </p>
+        </div>
+    </div>
+</div>
+<div class="infos-cours courss discussionn faqq progressions menus-options">
+    <div class="infos-wrapper">
+        <section class="updates">
+            <h1>Infos et actualités</h1>
+            <section class="updates-section">
+                <article>
+                    <h2>February 3, 2025</h2>
+                    <h1>
+                        <strong>
+                            <span
+                                style="
+                                    font-family: 'Open Sans', Verdana, Arial,
+                                        Helvetica, sans-serif;
+                                "
+                                >Y yibeoog yaa laaf</span
+                            >
+                        </strong>
+                    </h1>
+                    <div>
+                        <div></div>
+                    </div>
+                </article>
+                <article>Article 2</article>
+            </section>
+        </section>
+
+        <section class="handouts">
+            <h1>Documents de cours</h1>
+            <ol>
+                <div>
+                    <strong>CALENDRIER</strong><br />
+                    <ul>
+                        <li
+                            style="
+                                border-left: green;
+                                padding: 3px 5px;
+                                line-height: 1.5rem;
+                                margin-top: 5px;
+                            "
+                        >
+                            <strong>Semaine&nbsp;0</strong>
+                            : 30 décembre 2024&nbsp;
+                        </li>
+                        <li>
+                            <strong>Semaine&nbsp;0</strong>
+                            : 30 décembre 2024&nbsp;
+                        </li>
+                    </ul>
+                </div>
+            </ol>
+        </section>
+    </div>
+</div>
+<div class="discussion courss infos faqq progressions menus-options">
+    <div class="container-discussion">
+        <!-- Historique des messages -->
+        <div class="messages" id="messageContainer">
+            <div class="message">
+                <h4>Utilisateur1</h4>
+                <p>
+                    Bonjour tout le monde, avez-vous des conseils pour le
+                    chapitre 2 ?
+                </p>
+            </div>
+            <div class="message">
+                <h4>Utilisateur2</h4>
+                <p>
+                    Je recommande de revoir les exercices de la semaine
+                    dernière, c’est très utile !
+                </p>
+            </div>
+            <!-- Les messages supplémentaires seront insérés ici -->
+        </div>
+
+        <!-- Zone pour écrire un message -->
+        <form id="messageForm">
+            <textarea
+                id="messageInput"
+                placeholder="Écrivez votre message ici..."
+                rows="3"
+                required
+            ></textarea>
+            <button type="submit">Envoyer</button>
+        </form>
+    </div>
+</div>
+<div class="progression faqq courss infos discussionn menus-options">
+    Progression
+</div>
+<div class="faq courss infos discussionn progressions menus-options">
+    un FAQ
+</div>
+
+<script>
+    // ces script sont destinés au basculement
+    // button Cours-InfosCours-Discussion-Progression-FAQ
+
+    function cours() {
+        const lecon = document.querySelectorAll(".courss");
+        const cours = document.querySelector(".cours");
+        cours.style.display = "block";
+        lecon.forEach((x) => {
+            x.style.display = "none";
+        });
+    }
+
+    function infos() {
+        const infos = document.querySelectorAll(".infos");
+        const infocours = document.querySelector(".infos-cours");
+        infocours.style.display = "flex";
+        infos.forEach((x) => {
+            x.style.display = "none";
+        });
+    }
+
+    function discussion() {
+        const discussions = document.querySelectorAll(".discussionn");
+        const discuss = document.querySelector(".discussion");
+        discuss.style.display = "flex";
+        discussions.forEach((x) => {
+            x.style.display = "none";
+        });
+    }
+
+    function progression() {
+        const progressions = document.querySelectorAll(".progressions");
+        const progression = document.querySelector(".progression");
+        progression.style.display = "flex";
+        progressions.forEach((x) => {
+            x.style.display = "none";
+        });
+    }
+
+    function faq() {
+        const faqq = document.querySelectorAll(".faqq");
+        const faq = document.querySelector(".faq");
+        faq.style.display = "flex";
+        faqq.forEach((x) => {
+            x.style.display = "none";
+        });
+    }
+</script>
+<script>
+    // Fonction pour afficher ou cacher les sous-titres
+    function toggleSubtitles(id, element) {
+        const icon = element.querySelector("i");
+        const x = document.getElementById(id);
+        if (x.style.display === "block") {
+            x.style.display = "none";
+            icon.style.transform = "rotate(0deg)";
+        } else {
+            x.style.display = "block";
+            icon.style.transform = "rotate(90deg)";
+        }
+    }
+
+    // Fonction pour charger le contenu correspondant
+    function loadContent(element) {
+        let content = element.getAttribute("data-glossaire");
+        content = content.split(";");
+        let contentDiv = document.getElementById("content-lecon");
+        contentDiv.innerHTML = "";
+        for (let x of content) {
+            contentDiv.innerHTML += `<div><span style="color:#007bff;">✔</span> ${x}</div>`;
+        }
+    }
+
+    //fonction pour charger un sous-titre et son contenu video/pdf
+    function loadContainer(value) {
+        content = value.split("$");
+        titre = content[0];
+        video = content[1];
+        pdf = content[2];
+        let contentDiv = document.getElementById("content-lecon");
+        contentDiv.innerHTML = "";
+        contentDiv.innerHTML = `
+            <div class="affichage-titre-lecon"><h2>${titre}</h2></div>
+            <div class="affichage-video-lecon">
+                <video
+                    src="${video}"
+                    controls
+                    width="540"
+                    height="300"
+                ></video>
+            </div>
+            <div class="affichage-fichier-lecon">
+                <a href="${pdf}" target="_blank">
+                📄 Télécharger le PDF
+                </a>
+            </div>
+        `;
+    }
+</script>
+{% endblock %}
