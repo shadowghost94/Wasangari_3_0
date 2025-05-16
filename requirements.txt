@@ -99,6 +99,7 @@ unicorn==2.1.1
 unix-ar==0.2.1
 urllib3==2.2.3
 wcwidth==0.2.13
+whitenoise==6.9.0
 xortool==1.0.2
 yt-dlp==2024.11.18
 zipp==3.21.0

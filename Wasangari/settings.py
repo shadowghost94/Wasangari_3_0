@@ -18,6 +18,9 @@ STATICFILES_DIRS = [
 # Ce répertoire est utilisé en prod (collectstatic les y met tous)
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
+# Cela permet à Whitenoise de compresser et de mieux servir tes fichiers.
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
@@ -50,6 +53,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'Wasangari.urls'
