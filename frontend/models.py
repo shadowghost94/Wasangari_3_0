@@ -1,7 +1,6 @@
 from django.contrib.auth.models import AbstractUser, BaseUserManager
 from django.db import models
 import os
-from Wasangari.storage_backends import PublicMediaStorage
 
 #modèle de base utilisé pour la création du superutilisateur ou de l'utiliisateur par défaut
 class CustomUserManager(BaseUserManager):
@@ -44,7 +43,7 @@ class User(AbstractUser):
     email = models.EmailField(verbose_name="Adresse E-mail", unique=True)
     sexe = models.CharField(max_length=10, choices=SEXE, verbose_name="SEXE")
     ethnie = models.ForeignKey(Ethnies, on_delete=models.DO_NOTHING, blank=True, null = True)
-    photo_de_profil = models.ImageField(storage=PublicMediaStorage(),upload_to='profile_pictures/', blank=True, null=True, verbose_name="Votre photo de profil")
+    photo_de_profil = models.ImageField(upload_to='profile_pictures/', blank=True, null=True, verbose_name="Votre photo de profil")
     is_registered = models.BooleanField(default=0, verbose_name="Si l'utilisateur courant est inscrit pour un cours précis")
     profession = models.CharField(max_length=255, default="Historien, Enseignant chercheur à L'université de Parakou")
 
