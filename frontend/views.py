@@ -212,7 +212,7 @@ def connexion(request):
             return render(request, 'acceuil.html', {"form": form, "login": login_form})
 
     else:
-        return redirect("acceuil")
+        return render(request, "connexion.html")
 
 #fonction python pour envoyer un e-mail
 def envoyer_email(subject, message, recipient_list):
