@@ -90,7 +90,7 @@ WSGI_APPLICATION = 'Wasangari.wsgi.application'
 #    }
 #}
 
-#user: turingalan1918@gmail.com@gmail.com
+#user: turingalan1918@gmail.com
 #password: ThePasswordOfTuring815
 
 DATABASES = {
