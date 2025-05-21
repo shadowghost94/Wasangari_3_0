@@ -206,27 +206,20 @@ def inscription(request):
 #Vue de connexion
 def connexion(request):
     if request.method == "POST":
-        login_form = LoginForm(request.POST)
-        
-        if login_form.is_valid():
-            email = login_form.cleaned_data['username']
-            password = login_form.cleaned_data['password']
+        try:
+            email = request.POST.get('email')
+            password = request.POST.get('password')
 
             user = authenticate(request, email = email, password = password)
             if user is not None:
-                login(request, user)
-                messages.success(request, "Connexion réussie !")
-                return redirect('acceuil')                  
-            else:
-                messages.error(request, "Adresse e-mail ou mot de passe incorrect !")
-                return render(request, 'acceuil.html')
-        else:
-            messages.error(request, "Formulaire de connexion invalide !")
-            return render(request, 'acceuil.html')
+                login(request, user) 
+            
+            return JsonResponse({'success': False, 'message': 'La connexion a echoué. Veuillez réessayer !'})
+        except Exception as e:
+            return JsonResponse({'success': False, 'message': str(e)})
 
     else:
-        login_form = LoginForm()
-        return render(request, "connexion.html", {'login': login_form})
+        return render(request, "connexion.html")
 
 #fonction python pour envoyer un e-mail
 def envoyer_email(subject, message, recipient_list):

@@ -32,8 +32,6 @@
                         <h2 class="form-title">Créez votre compte</h2>
                         <form method="post">
                             {% csrf_token %}
-                            <h2 class="form-title">Connexion</h2>
-
                             <div class="form-group">
                                 <label for="email">Email</label>
                                 <input
@@ -56,7 +54,7 @@
                                 />
                             </div>
 
-                            <button type="submit" class="btn">
+                            <button class="btn" id="connexionBtn">
                                 Se connecter
                             </button>
 
@@ -70,6 +68,45 @@
             </div>
         </div>
 
-        <script></script>
+        <script>
+            const connexionBtn = document.getElementById("connexionBtn");
+
+            connexionBtn.AddEventListener("click", async function (e) {
+                e.preventDefault();
+
+                const email = document.getElementById("email").value;
+                const password = dociment.getElementById("password").value;
+
+                if (email && password) {
+                    const formData = new FormData();
+
+                    formData.append("email", email);
+                    formData.append("password", password);
+
+                    try {
+                        const reponse = await fetch("{%url 'connexion'%}", {
+                            method: "POST",
+                            body: formData,
+                            headers: {
+                                "X-Requested-With": "XMLHttpRequest",
+                            },
+                        });
+
+                        const data = await response.json();
+
+                        if (response.ok && data.success) {
+                            // Affichage du message de succès
+
+                            successMessage.style.display = "block";
+
+                            // Redirection après 3 secondes
+                            setTimeout(() => {
+                                window.location.href = "{% url 'accueil' %}";
+                            }, 3000);
+                        }
+                    } catch (e) {}
+                }
+            });
+        </script>
     </body>
 </html>
