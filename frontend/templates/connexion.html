@@ -118,7 +118,7 @@
                             successMessage.style.display = "none";
                         }
                     } catch (error) {
-                        elseMessage.textContent = "Une erreur s'est produite.";
+                        elseMessage.textContent = error;
                         elseMessage.style.display = "block";
                         successMessage.style.display = "none";
                         console.error(error);
