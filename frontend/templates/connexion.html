@@ -117,7 +117,7 @@
                             elseMessage.style.display = "block";
                             successMessage.style.display = "none";
                         }
-                    } catch (error) {
+                    } catch (error, response) {
                         elseMessage.textContent = response;
                         elseMessage.style.display = "block";
                         successMessage.style.display = "none";
