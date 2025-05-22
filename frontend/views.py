@@ -205,16 +205,20 @@ def inscription(request):
     
 #Vue de connexion
 def connexion(request):
-    if request.method == "POST":
+    if request.method == "POST" and request.headers.get("X-Requested-With") == "XMLHttpRequest":
         try:
             email = request.POST.get('email')
             password = request.POST.get('password')
 
             user = authenticate(request, email = email, password = password)
+
             if user is not None:
-                login(request, user) 
+                login(request, user)
+                return JsonResponse({'success': True, 'message': 'Connexion réussie !'})
             
-            return JsonResponse({'success': False, 'message': 'La connexion a echoué. Veuillez réessayer !'})
+            else:
+                return JsonResponse({'success':False, 'message':'Identifiants invalides !'}) 
+            
         except Exception as e:
             return JsonResponse({'success': False, 'message': str(e)})
 

@@ -26,6 +26,14 @@
                     <div class="progress-bar">
                         <div class="progress" id="progress"></div>
                     </div>
+                    <div class="success-message" id="successMessage">
+                        Connexion réussie ! Redirection vers la page
+                        d'accueil...
+                    </div>
+                    <div class="success-message" id="elseMessage">
+                        Les identifiants que vous avez saisi sont incorrect.
+                        Veuillez réessayer !
+                    </div>
 
                     <!-- Première étape du formulaire -->
                     <div class="form-step visible" id="step1">
@@ -70,6 +78,8 @@
 
         <script>
             const connexionBtn = document.getElementById("connectBtn");
+            const successMessage = document.getElementById("successMessage");
+            const elseMessage = document.getElementById("elseMessage");
 
             connexionBtn.AddEventListener("click", async function (e) {
                 e.preventDefault();
@@ -99,12 +109,16 @@
 
                             successMessage.style.display = "block";
 
-                            // Redirection après 3 secondes
+                            // Redirection après 2 secondes
                             setTimeout(() => {
                                 window.location.href = "{% url 'acceuil' %}";
-                            }, 3000);
+                            }, 2000);
+                        } else {
+                            elseMessage.style.display = "block";
                         }
-                    } catch (e) {}
+                    } catch (e) {
+                        console.log("email et password n'ont pas été entré !");
+                    }
                 }
             });
         </script>
