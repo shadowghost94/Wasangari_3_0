@@ -81,11 +81,11 @@
             const successMessage = document.getElementById("successMessage");
             const elseMessage = document.getElementById("elseMessage");
 
-            connexionform.AddEventListener("submit", async function (e) {
+            connexionform.addEventListener("submit", async function (e) {
                 e.preventDefault();
 
                 const email = document.getElementById("email").value;
-                const password = dociment.getElementById("password").value;
+                const password = document.getElementById("password").value;
 
                 if (email && password) {
                     const formData = new FormData();
@@ -94,7 +94,7 @@
                     formData.append("password", password);
 
                     try {
-                        const reponse = await fetch("{%url 'connexion'%}", {
+                        const response = await fetch("{% url 'connexion' %}", {
                             method: "POST",
                             body: formData,
                             headers: {
@@ -105,23 +105,29 @@
                         const data = await response.json();
 
                         if (response.ok && data.success) {
-                            // Affichage du message de succès
-
                             successMessage.style.display = "block";
+                            elseMessage.style.display = "none";
 
-                            // Redirection après 2 secondes
                             setTimeout(() => {
                                 window.location.href = "{% url 'acceuil' %}";
                             }, 2000);
                         } else {
-                            // Affichage des erreurs
-                            alert(
-                                data.message || "Erreur lors de l'inscription"
-                            );
+                            elseMessage.textContent =
+                                data.message || "Erreur lors de la connexion";
+                            elseMessage.style.display = "block";
+                            successMessage.style.display = "none";
                         }
-                    } catch (e) {
-                        console.log("Email et password n'ont pas été entré !");
+                    } catch (error) {
+                        elseMessage.textContent = "Une erreur s'est produite.";
+                        elseMessage.style.display = "block";
+                        successMessage.style.display = "none";
+                        console.error(error);
                     }
+                } else {
+                    elseMessage.textContent =
+                        "Veuillez entrer email et mot de passe.";
+                    elseMessage.style.display = "block";
+                    successMessage.style.display = "none";
                 }
             });
         </script>
