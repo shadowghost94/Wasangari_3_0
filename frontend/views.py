@@ -205,7 +205,7 @@ def inscription(request):
     
 #Vue de connexion
 def connexion(request):
-    if request.method == "POST" and request.headers.get("X-Requested-With") == "XMLHttpRequest":
+    if request.method == "POST":
         try:
             email = request.POST.get('email')
             password = request.POST.get('password')
