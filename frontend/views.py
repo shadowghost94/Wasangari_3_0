@@ -214,10 +214,12 @@ def connexion(request):
 
             if user is not None:
                 login(request, user)
-                return JsonResponse({'success': True, 'message': 'Connexion réussie !'})
+                message = "Connexion réussie !"
             
             else:
-                return JsonResponse({'success':False, 'message':'Identifiants invalides !'}) 
+                message="Identifiants invalides !"
+
+            return JsonResponse({'success': True, 'message': message})
             
         except Exception as e:
             return JsonResponse({'success': False, 'message': str(e)})
