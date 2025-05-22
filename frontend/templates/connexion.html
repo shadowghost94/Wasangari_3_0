@@ -94,15 +94,26 @@
                     formData.append("password", password);
 
                     try {
-                        const response = await fetch("{% url 'connexion' %}", {
-                            method: "POST",
-                            body: formData,
-                            headers: {
-                                "X-Requested-With": "XMLHttpRequest",
-                            },
-                        });
+                        try {
+                            const response = await fetch(
+                                "{% url 'connexion' %}",
+                                {
+                                    method: "POST",
+                                    body: formData,
+                                    headers: {
+                                        "X-Requested-With": "XMLHttpRequest",
+                                    },
+                                }
+                            );
+                        } catch (e) {
+                            elseMessage.textContent = "1";
+                        }
 
-                        const data = await response.json();
+                        try {
+                            const data = await response.json();
+                        } catch (e) {
+                            elseMessage.textContent = "2";
+                        }
 
                         if (response.ok && data.success) {
                             successMessage.style.display = "block";
@@ -117,8 +128,8 @@
                             elseMessage.style.display = "block";
                             successMessage.style.display = "none";
                         }
-                    } catch (error, response) {
-                        elseMessage.textContent = response;
+                    } catch (error) {
+                        elseMessage.textContent = error;
                         elseMessage.style.display = "block";
                         successMessage.style.display = "none";
                         console.error(error);
