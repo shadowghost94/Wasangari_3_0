@@ -114,7 +114,10 @@
                                 window.location.href = "{% url 'acceuil' %}";
                             }, 2000);
                         } else {
-                            elseMessage.style.display = "block";
+                            // Affichage des erreurs
+                            alert(
+                                data.message || "Erreur lors de l'inscription"
+                            );
                         }
                     } catch (e) {
                         console.log("Email et password n'ont pas été entré !");
