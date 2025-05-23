@@ -33,7 +33,7 @@
                     <!-- Première étape du formulaire -->
                     <div class="form-step visible" id="step1">
                         <h2 class="form-title">Créez votre compte</h2>
-                        <form method="post" id="connexionform">
+                        <form>
                             {% csrf_token %}
                             <div class="form-group">
                                 <label for="email">Email</label>
@@ -57,11 +57,7 @@
                                 />
                             </div>
 
-                            <button
-                                type="submit"
-                                class="btn"
-                                id="connexionform"
-                            >
+                            <button class="btn" id="connexionform">
                                 Se connecter
                             </button>
 
@@ -80,7 +76,7 @@
             const successMessage = document.getElementById("successMessage");
             const elseMessage = document.getElementById("elseMessage");
 
-            connexionform.addEventListener("submit", async function (e) {
+            connexionform.addEventListener("click", async function (e) {
                 e.preventDefault();
 
                 const email = document.getElementById("email").value;
