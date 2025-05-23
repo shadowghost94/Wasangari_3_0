@@ -18,8 +18,8 @@ from datetime import date
 from django.contrib import messages
 
 
-def acceuil(request):
-    return render(request, 'acceuil.html')
+def acceuil(request, message):
+    return render(request, 'acceuil.html', {'messages': message})
 
 def apprendre(request):
     # l'instruction ci-dessous récupère l'ensemble des cours
@@ -215,7 +215,7 @@ def connexion(request, message="Bienvenue sur la page de connexion !"):
             if user is not None:
                 login(request, user)
                 message = "Connexion réussie !"
-                return redirect (acceuil,{'messages': message})
+                return redirect (acceuil, message)
             
             else:
                 message="Identifiants invalides !"
