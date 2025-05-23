@@ -204,7 +204,7 @@ def inscription(request):
         return render(request, "inscription.html", {'langues': langues})
     
 #Vue de connexion
-def connexion(request):
+def connexion(request, message="Bienvenue sur la page de connexion !"):
     if request.method == "POST":
         try:
             email = request.POST.get('email')
@@ -215,17 +215,17 @@ def connexion(request):
             if user is not None:
                 login(request, user)
                 message = "Connexion réussie !"
+                return redirect (acceuil,{'messages': message})
             
             else:
                 message="Identifiants invalides !"
-
-            return JsonResponse({'success': True, 'message': message})
+                return redirect(connexion, {'messages': message})
             
         except Exception as e:
             return JsonResponse({'success': False, 'message': str(e)})
 
     else:
-        return render(request, "connexion.html")
+        return render(request, "connexion.html", {'messages': message})
 
 #fonction python pour envoyer un e-mail
 def envoyer_email(subject, message, recipient_list):
