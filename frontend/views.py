@@ -207,8 +207,8 @@ def inscription(request):
 def connexion(request, message="Bienvenue sur la page de connexion !"):
     if request.method == "POST":
         try:
-            email = request.POST.get('email')
-            password = request.POST.get('password')
+            email = request.POST['email']
+            password = request.POST['password']
 
             user = authenticate(request, email = email, password = password)
 
@@ -222,7 +222,7 @@ def connexion(request, message="Bienvenue sur la page de connexion !"):
                 return redirect(connexion, {'messages': message})
             
         except Exception as e:
-            return JsonResponse({'success': False, 'message': str(e)})
+            return render(request,'connexion.html',{ 'messages': str(e)})
 
     else:
         return render(request, "connexion.html", {'messages': message})

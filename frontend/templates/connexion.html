@@ -33,7 +33,7 @@
                     <!-- Première étape du formulaire -->
                     <div class="form-step visible" id="step1">
                         <h2 class="form-title">Créez votre compte</h2>
-                        <form>
+                        <form method="post" action="{% url 'connexion' %}">
                             {% csrf_token %}
                             <div class="form-group">
                                 <label for="email">Email</label>
@@ -57,7 +57,11 @@
                                 />
                             </div>
 
-                            <button class="btn" id="connexionform">
+                            <button
+                                type="submit"
+                                class="btn"
+                                id="connexionform"
+                            >
                                 Se connecter
                             </button>
 
@@ -70,45 +74,5 @@
                 </div>
             </div>
         </div>
-
-        <script>
-            const connexionform = document.getElementById("connexionform");
-            const successMessage = document.getElementById("successMessage");
-            const elseMessage = document.getElementById("elseMessage");
-
-            connexionform.addEventListener("click", async function (e) {
-                e.preventDefault();
-
-                const email = document.getElementById("email").value;
-                const password = document.getElementById("password").value;
-
-                if (email && password) {
-                    const formData = new FormData();
-
-                    formData.append("email", email);
-                    formData.append("password", password);
-
-                    try {
-                        const response = await fetch("{% url 'connexion' %}", {
-                            method: "POST",
-                            body: formData,
-                            headers: {
-                                "X-Requested-With": "XMLHttpRequest",
-                            },
-                        });
-                    } catch (error) {
-                        elseMessage.textContent = error;
-                        elseMessage.style.display = "block";
-                        successMessage.style.display = "none";
-                        console.error(error);
-                    }
-                } else {
-                    elseMessage.textContent =
-                        "Veuillez entrer email et mot de passe.";
-                    elseMessage.style.display = "block";
-                    successMessage.style.display = "none";
-                }
-            });
-        </script>
     </body>
 </html>
