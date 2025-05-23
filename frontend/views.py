@@ -18,7 +18,7 @@ from datetime import date
 from django.contrib import messages
 
 
-def acceuil(request, message):
+def acceuil(request, message=""):
     return render(request, 'acceuil.html', {'messages': message})
 
 def apprendre(request):
