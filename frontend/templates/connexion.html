@@ -26,9 +26,11 @@
                     <div class="progress-bar">
                         <div class="progress" id="progress"></div>
                     </div>
+                    {%for message in messages%}
                     <div class="success-message" id="successMessage">
                         {{message}}
                     </div>
+                    {%endfor%}
 
                     <!-- Première étape du formulaire -->
                     <div class="form-step visible" id="step1">

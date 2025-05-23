@@ -219,10 +219,10 @@ def connexion(request, message="Bienvenue sur la page de connexion !"):
             
             else:
                 message="Identifiants invalides !"
-                return redirect(connexion, {'messages': message})
+                return render(request, 'connexion.html', {'messages': message})
             
         except Exception as e:
-            return render(request,'connexion.html',{ 'messages': str(e)})
+            return render(request,'connexion.html',{'messages': str(e)})
 
     else:
         return render(request, "connexion.html", {'messages': message})
