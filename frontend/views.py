@@ -214,8 +214,8 @@ def connexion(request, message="Bienvenue sur la page de connexion !"):
 
             if user is not None:
                 login(request, user)
-                message = "Connexion réussie !"
-                return redirect (acceuil, message)
+                message.success(request, "Connexion réussie !")
+                return redirect ('acceuil')
             
             else:
                 message="Identifiants invalides !"
