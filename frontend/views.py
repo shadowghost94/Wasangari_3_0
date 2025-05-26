@@ -3,8 +3,6 @@ from django.contrib.auth.hashers import make_password
 from django.core.mail import send_mail, EmailMessage
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.http import JsonResponse
-from .forms import LoginForm 
-import re
 from Wasangari.settings import EMAIL_HOST_USER
 from .token import generatorToken
 
@@ -13,7 +11,6 @@ from .models import *
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 
-from django.views.decorators.csrf import csrf_exempt
 from datetime import date
 from django.contrib import messages
 
@@ -204,28 +201,30 @@ def inscription(request):
         return render(request, "inscription.html", {'langues': langues})
     
 #Vue de connexion
-def connexion(request, message="Bienvenue sur la page de connexion !"):
+def connexion(request):
     if request.method == "POST":
         try:
             email = request.POST['email']
             password = request.POST['password']
 
-            user = authenticate(request, email = email, password = password)
+            user = authenticate(request, email=email, password=password)
 
             if user is not None:
                 login(request, user)
-                message.success(request, "Connexion réussie !")
-                return redirect ('acceuil')
-            
+                messages.success(request, "Connexion réussie !")
+                return redirect('/')  # Redirection vers la page d'accueil
+
             else:
-                message="Identifiants invalides !"
-                return render(request, 'connexion.html', {'messages': message})
-            
+                messages.error(request, "Identifiants invalides !")
+                return render(request, 'connexion.html')
+
         except Exception as e:
-            return render(request,'connexion.html',{'messages': str(e)})
+            messages.error(request, f"Erreur : {str(e)}")
+            return render(request, 'connexion.html')
 
     else:
-        return render(request, "connexion.html", {'messages': message})
+        messages.info(request, "Bienvenue sur la page de connexion !")
+        return render(request, "connexion.html")
 
 #fonction python pour envoyer un e-mail
 def envoyer_email(subject, message, recipient_list):
