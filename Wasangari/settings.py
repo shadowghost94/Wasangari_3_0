@@ -1,12 +1,19 @@
 from pathlib import Path
 import os
 from .info import *
-from decouple import config
+# from decouple import config
 import dj_database_url
 from storages.backends.s3boto3 import S3Boto3Storage
+import environ
+
+env = environ.Env(
+    DEBUG=(bool, False)
+)
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+environ.Env.read_env(BASE_DIR/'.env')
 
 #fichiers static
 STATIC_URL = '/static/'
@@ -25,7 +32,7 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = config('SECRET_KEY')
+SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -43,6 +50,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'storages'
 ]
 
 MIDDLEWARE = [
@@ -94,19 +102,16 @@ WSGI_APPLICATION = 'Wasangari.wsgi.application'
 #password: ThePasswordOfTuring815
 
 DATABASES = {
-    'default': dj_database_url.parse(config('DATABASE_URL'))
+    'default': dj_database_url.parse(env('DATABASE_URL'))
 }
 
-
-AWS_ACCESS_KEY_ID = config('AWS_ACCESS_KEY_ID')
-AWS_SECRET_ACCESS_KEY_ID = config('AWS_SECRET_ACCESS_KEY_ID')
-AWS_STORAGE_BUCKET_NAME = 'wasangari-bucket'
-AWS_S3_SIGNATURE_NAME = 's3v4'
-AWS_S3_REGION_NAME = 'eu-north-1'
-AWS_S3_FILE_OVERWRITE = False
-AWS_DEFAULT_ACL = 'none'
-AWS_S3_VERITY = True
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
+AWS_ACCESS_KEY_ID = env('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = env('AWS_SECRET_ACCESS_KEY')
+AWS_STORAGE_BUCKET_NAME = env('AWS_STORAGE_BUCKET_NAME')
+AWS_S3_REGION_NAME = env('AWS_S3_REGION_NAME')
+AWS_QUERYSTRING_EXPIRE = 600
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
