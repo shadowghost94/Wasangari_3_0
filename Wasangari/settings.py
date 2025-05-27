@@ -3,7 +3,6 @@ import os
 from .info import *
 # from decouple import config
 import dj_database_url
-from storages.backends.s3boto3 import S3Boto3Storage
 import environ
 
 env = environ.Env(
@@ -105,13 +104,18 @@ DATABASES = {
     'default': dj_database_url.parse(env('DATABASE_URL'))
 }
 
-DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-
-AWS_ACCESS_KEY_ID = env('AWS_ACCESS_KEY_ID')
-AWS_SECRET_ACCESS_KEY = env('AWS_SECRET_ACCESS_KEY')
-AWS_STORAGE_BUCKET_NAME = env('AWS_STORAGE_BUCKET_NAME')
-AWS_S3_REGION_NAME = env('AWS_S3_REGION_NAME')
-AWS_QUERYSTRING_EXPIRE = 600
+STORAGES = {
+    "default": {
+        "BACKEND": "storages.backends.s3boto3.S3Boto3Storage",
+        "OPTIONS": {
+            "access_key": env("AWS_ACCESS_KEY_ID"),
+            "secret_key": env("AWS_SECRET_ACCESS_KEY"),
+            "bucket_name": env("AWS_STORAGE_BUCKET_NAME"),
+            "region_name": env("AWS_S3_REGION_NAME"),
+            "querystring_expire": 600,
+        },
+    },
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
