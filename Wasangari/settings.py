@@ -115,6 +115,9 @@ STORAGES = {
             "querystring_expire": 600,
         },
     },
+    "staticfiles": {
+        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+    },
 }
 
 # Password validation
