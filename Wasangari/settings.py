@@ -113,6 +113,7 @@ STORAGES = {
             "bucket_name": env("AWS_STORAGE_BUCKET_NAME"),
             "region_name": env("AWS_S3_REGION_NAME"),
             "querystring_expire": 600,
+            "default_acl": "public-read",
         },
     },
     "staticfiles": {
