@@ -1,0 +1,154 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Dashboard Wasangari</title>
+        <link rel="shortcut icon" type="image/png" />
+        <link
+            rel="stylesheet"
+            href="{% static 'assets/css/dashboard.min.css' %}"
+        />
+    </head>
+
+    <body>
+        <!--  Body Wrapper -->
+        <div
+            class="page-wrapper"
+            id="main-wrapper"
+            data-layout="vertical"
+            data-navbarbg="skin6"
+            data-sidebartype="full"
+            data-sidebar-position="fixed"
+            data-header-position="fixed"
+        >
+            <aside class="left-sidebar">
+                <!-- Sidebar scroll-->
+                <div>
+                    <div
+                        class="brand-logo d-flex align-items-center justify-content-between"
+                    >
+                        <a href="./dashboard.html" class="text-nowrap logo-img">
+                            <h1>Wasangari</h1>
+                        </a>
+                        <div
+                            class="close-btn d-xl-none d-block sidebartoggler cursor-pointer"
+                            id="sidebarCollapse"
+                        >
+                            <i class="ti ti-x fs-6"></i>
+                        </div>
+                    </div>
+                    <!-- Sidebar navigation-->
+                    <nav class="sidebar-nav scroll-sidebar" data-simplebar="">
+                        <ul id="sidebarnav">
+                            <li class="sidebar-item">
+                                <a
+                                    class="sidebar-link"
+                                    href="./dashboard.html"
+                                    aria-expanded="false"
+                                >
+                                    <i class="ti ti-atom"></i>
+                                    <span class="hide-menu">DASHBOARD</span>
+                                </a>
+                            </li>
+                            <!-- a----------------------------------a -->
+                            <!-- Dashboard -->
+                            <!-- a----------------------------------a -->
+                            <li class="sidebar-item">
+                                <a
+                                    class="sidebar-link justify-content-between"
+                                    href="#"
+                                    aria-expanded="false"
+                                >
+                                    <div
+                                        class="d-flex align-items-center gap-3"
+                                    >
+                                        <span class="d-flex">
+                                            <i class="ti ti-book"></i>
+                                        </span>
+                                        <span class="hide-menu"
+                                            >AJOUTER UN COURS</span
+                                        >
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a
+                                    class="sidebar-link justify-content-between"
+                                    href="#"
+                                    aria-expanded="false"
+                                >
+                                    <div
+                                        class="d-flex align-items-center gap-3"
+                                    >
+                                        <span class="d-flex">
+                                            <i class="ti ti-package"></i>
+                                        </span>
+                                        <span class="hide-menu"
+                                            >AJOUTER UN OBJET</span
+                                        >
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a
+                                    class="sidebar-link justify-content-between"
+                                    href=""
+                                    aria-expanded="false"
+                                >
+                                    <div
+                                        class="d-flex align-items-center gap-3"
+                                    >
+                                        <span class="d-flex">
+                                            <i class="ti ti-calendar"></i>
+                                        </span>
+                                        <span class="hide-menu"
+                                            >AJOUTER EVENEMENT</span
+                                        >
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <span class="sidebar-divider lg"></span>
+                            </li>
+
+                            <li class="sidebar-item">
+                                <a
+                                    class="sidebar-link justify-content-between"
+                                    href=""
+                                    aria-expanded="false"
+                                >
+                                    <div
+                                        class="d-flex align-items-center gap-3"
+                                    >
+                                        <span class="d-flex">
+                                            <i class="ti ti-upload"></i>
+                                        </span>
+                                        <span class="hide-menu"
+                                            >AJOUTER UNE IMAGE</span
+                                        >
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                    <!-- End Sidebar navigation -->
+                </div>
+                <!-- End Sidebar scroll-->
+            </aside>
+            <!--  Sidebar End -->
+            <!--  Main wrapper -->
+            {%block conteneur%}{%endblock%%}
+        </div>
+        <script src="{% static 'assets/libs/jquery/dist/jquery.min.js' %}"></script>
+        <script src="{% static 'assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js' %}"></script>
+        <script src="{% static 'assets/js/sidebarmenu.js' %}"></script>
+        <script src="{% static 'assets/js/app.min.js' %}"></script>
+        <script src="{% static 'assets/libs/apexcharts/dist/apexcharts.min.js' %}"></script>
+        <script src="{% static 'assets/libs/simplebar/dist/simplebar.js' %}"></script>
+        <script src="{% static 'assets/js/dashboard.js' %}"></script>
+        <!-- solar icons -->
+        <script src="https://cdn.jsdelivr.net/npm/iconify-icon@1.0.8/dist/iconify-icon.min.js"></script>
+    </body>
+</html>

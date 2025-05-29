@@ -1,186 +1,89 @@
-document.getElementById('dash-modif-profil1').addEventListener('click', function() {
-    // Masquer toutes les sections grid-item
-    document.querySelectorAll('.div-dashboard-principale').forEach(function(item) {
-        item.style.display = 'none';
-    });
-    document.getElementById('affiche-things').style.display = 'none';
-    document.getElementById('modif-afficher').style.display = 'block';
-});
-
-document.getElementById('back-to-main1').addEventListener('click', function() {
-    // Afficher toutes les sections grid-item
-    document.querySelectorAll('.div-dashboard-principale').forEach(function(item) {
-        item.style.display = 'flex';
-    });
-    document.getElementById('affiche-things').style.display = 'block';
-    document.getElementById('modif-afficher').style.display = 'none';
-});
-
-//permet de visualiser une photo sélectionné
-function previewProfilePic(event) {
-    const reader = new FileReader();
-    reader.onload = function() {
-        const output = document.getElementById('profile-pic-das');
-        output.src = reader.result;
-    };
-    reader.readAsDataURL(event.target.files[0]);
-}
-
-//enregistrement des nouvelles informations
-document.getElementById('profile-form-das').addEventListener('submit', function(event) {
-    event.preventDefault();
-
-    const formData = new FormData(this);
-    console.log(formData);
-    $.ajax({
-        url: '{% url "modifierProfil" %}',
-        type: 'POST',
-        data: formData,
-        processData: false,
-        contentType: false,
-        headers: {
-            'X-CSRFToken': '{{ csrf_token }}'
-        },
-        success: function(response) {
-            if (response.success) {
-                document.getElementById('responseMessage').innerText = 'Votre profil a été modifié avec succès';
-            } else {
-                document.getElementById('responseMessage').innerText = 'Une erreur medium est survenue lors de la mise à jour du profil';
-            }
-        },
-        error: function() {
-            document.getElementById('responseMessage').innerText = 'Une erreur est survenue lors de la mise à jour du profil';
-        }
-    });
-});
+$(function () {
 
 
-/* Concerne l'affichage du formulaire d'ajout d'event */
-document.getElementById('addEvent').addEventListener('click', function() {
-    // Masquer toutes les sections grid-item
-    document.querySelectorAll('.div-dashboard-principale').forEach(function(item) {
-        item.style.display = 'none';
-    });
-    document.getElementById('affiche-things').style.display = 'none';
-    document.getElementById('ajoutEvent').style.display = 'block';
-});
+  // -----------------------------------------------------------------------
+  // sales overview
+  // -----------------------------------------------------------------------
 
-document.getElementById('retour1').addEventListener('click', function() {
-     // Afficher toutes les sections grid-item
-     document.querySelectorAll('.div-dashboard-principale').forEach(function(item) {
-         item.style.display = 'flex';
-     });
-     document.getElementById('affiche-things').style.display = 'block';
-     document.getElementById('ajoutEvent').style.display = 'none';
- });
+  var options_sales_overview = {
+    series: [
+      {
+        name: "Ample Admin",
+        data: [355, 390, 300, 350, 390, 180],
+      },
+      {
+        name: "Pixel Admin",
+        data: [280, 250, 325, 215, 250, 310],
+      },
+    ],
+    chart: {
+      type: "bar",
+      height: 275,
+      toolbar: {
+        show: false,
+      },
+      foreColor: "#adb0bb",
+      fontFamily: "inherit",
+      sparkline: {
+        enabled: false,
+      },
+    },
+    grid: {
+      show: false,
+      borderColor: "transparent",
+      padding: {
+        left: 0,
+        right: 0,
+        bottom: 0,
+      },
+    },
+    plotOptions: {
+      bar: {
+        horizontal: false,
+        columnWidth: "25%",
+        endingShape: "rounded",
+        borderRadius: 5,
+      },
+    },
+    colors: ["var(--bs-primary)", "var(--bs-secondary)"],
+    dataLabels: {
+      enabled: false,
+    },
+    yaxis: {
+      show: true,
+      min: 100,
+      max: 400,
+      tickAmount: 3,
+    },
+    stroke: {
+      show: true,
+      width: 5,
+      lineCap: "butt",
+      colors: ["transparent"],
+    },
+    xaxis: {
+      type: "category",
+      categories: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
+      axisBorder: {
+        show: false,
+      },
+    },
+    fill: {
+      opacity: 1,
+    },
+    tooltip: {
+      theme: "dark",
+    },
+    legend: {
+      show: false,
+    },
+  };
+
+  var chart_column_basic = new ApexCharts(
+    document.querySelector("#sales-overview"),
+    options_sales_overview
+  );
+  chart_column_basic.render();
 
 
- /* Concerne l'affichage du formulaire d'ajout d'objet à vendre */
-document.getElementById('addObjet').addEventListener('click', function() {
-    // Masquer toutes les sections grid-item
-    document.querySelectorAll('.div-dashboard-principale').forEach(function(item) {
-        item.style.display = 'none';
-    });
-    document.getElementById('affiche-things').style.display = 'none';
-    document.getElementById('ajoutObjet').style.display = 'block';
-});
-
-document.getElementById('retour2').addEventListener('click', function() {
-     // Afficher toutes les sections grid-item
-     document.querySelectorAll('.div-dashboard-principale').forEach(function(item) {
-         item.style.display = 'flex';
-     });
-     document.getElementById('affiche-things').style.display = 'block';
-     document.getElementById('ajoutObjet').style.display = 'none';
- });
-
- /* Concerne l'affichage du formulaire d'ajout de nouvel actualité */
- document.getElementById('addNews').addEventListener('click', function() {
-    // Masquer toutes les sections grid-item
-    document.querySelectorAll('.div-dashboard-principale').forEach(function(item) {
-        item.style.display = 'none';
-    });
-    document.getElementById('affiche-things').style.display = 'none';
-    document.getElementById('ajoutNews').style.display = 'block';
-});
-
-document.getElementById('retour3').addEventListener('click', function() {
-     // Afficher toutes les sections grid-item
-     document.querySelectorAll('.div-dashboard-principale').forEach(function(item) {
-         item.style.display = 'flex';
-     });
-     document.getElementById('affiche-things').style.display = 'block';
-     document.getElementById('ajoutNews').style.display = 'none';
- });
-
-
- // ajax-form.js
-$(document).ready(function() {
-    $('#profile-form-event').submit(function(event) {
-        event.preventDefault();
-
-        var formData = new FormData($(this)[0]);
-
-        $.ajax({
-            url: '/addEvent/',
-            type: 'POST',
-            data: formData,
-            processData: false,
-            contentType: false,
-            success: function(response) {
-                console.log('Données soumises avec succès');
-            },
-            error: function(xhr, status, error) {
-                console.error('Erreur:', error);
-            }
-        });
-    });
-
-    
-});
-
-// ajouter un objet en vente
-$(document).ready(function(){
-    $('#profile-form-objet').submit(function(event) {
-        event.preventDefault();
-
-        var formData = new FormData($(this)[0]);
-
-        $.ajax({
-            url: '/addObjet/',
-            type: 'POST',
-            data: formData,
-            processData: false,
-            contentType: false,
-            success: function(response) {
-                console.log('Données soumises avec succès');
-            },
-            error: function(xhr, status, error) {
-                console.error('Erreur:', error);
-            }
-        });
-    });
-});
-
-// ajouter une actualité
-$(document).ready(function(){
-    $('#profile-form-news').submit(function(event) {
-        event.preventDefault();
-
-        var formData = new FormData($(this)[0]);
-
-        $.ajax({
-            url: '/addNews/',
-            type: 'POST',
-            data: formData,
-            processData: false,
-            contentType: false,
-            success: function(response) {
-                console.log('Données soumises avec succès');
-            },
-            error: function(xhr, status, error) {
-                console.error('Erreur:', error);
-            }
-        });
-    });
-});
+})
