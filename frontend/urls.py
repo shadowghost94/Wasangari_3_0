@@ -39,7 +39,11 @@ urlpatterns = [
     path('articles_patrimoines/', views.articles_patrimoines, name="articles_patrimoines"),
     path('test/', views.test, name="test"),
     path('apprendre/detail-cours/<int:cours_id>/registered_user', views.registered_user, name="registered_user"),
-    path('apprendre/detail-cours/<int:cours_id>/unregistered_user', views.unregistered_user, name="unregistered_user")
+    path('apprendre/detail-cours/<int:cours_id>/unregistered_user', views.unregistered_user, name="unregistered_user"),
+    path('ajouter_cours/', views.ajouter_cours, name="ajouter_cours"),
+    path('ajouter_objet/', views.ajouter_objet, name="ajouter_objet"),
+    path('ajouter_evenement/', views.ajouter_evenement, name="ajouter_evenement"),
+    path('ajouter_image/', views.ajouter_image, name="ajouter_image")
 ]
 
 if settings.DEBUG:

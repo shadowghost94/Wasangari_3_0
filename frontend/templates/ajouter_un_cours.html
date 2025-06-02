@@ -1,0 +1,207 @@
+{%extends 'dashboard-base.html'%} {% block conteneur %}
+<div class="container ajouter-cours">
+    <h2 class="mb-4">Créer un cours</h2>
+    <form enctype="multipart/form-data">
+        <div class="form-container" id="ajouter-cours">
+            <div class="form-group">
+                <label for="titre">Titre</label>
+                <input
+                    type="text"
+                    class="form-control"
+                    id="titre"
+                    name="titre"
+                    required
+                />
+            </div>
+
+            <div class="form-group">
+                <label for="objectif">Objectif</label>
+                <input
+                    type="text"
+                    class="form-control"
+                    id="objectif"
+                    name="objectif"
+                />
+            </div>
+
+            <div class="form-group full-width">
+                <label for="description">Description</label>
+                <textarea
+                    class="form-control"
+                    id="description"
+                    name="description"
+                    rows="3"
+                ></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="langue">Langue</label>
+                <select class="form-select" id="langue" name="langue">
+                    <!-- Remplir dynamiquement en Django -->
+                    <option value="">Choisissez une langue</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="duree">Durée (en semaines)</label>
+                <input
+                    type="number"
+                    class="form-control"
+                    id="duree"
+                    name="duree"
+                />
+            </div>
+
+            <div class="form-group">
+                <label for="effort">Effort hors cours (en heures)</label>
+                <input
+                    type="number"
+                    class="form-control"
+                    id="effort"
+                    name="effort"
+                />
+            </div>
+
+            <div class="form-group">
+                <label for="rythme">Rythme (heures/semaine)</label>
+                <input
+                    type="number"
+                    class="form-control"
+                    id="rythme"
+                    name="rythme"
+                />
+            </div>
+
+            <div class="form-group">
+                <label for="certifiante">Certifiante ?</label>
+                <div class="form-check">
+                    <input
+                        class="form-check-input"
+                        type="checkbox"
+                        id="certifiante"
+                        name="certifiante"
+                    />
+                    <label class="form-check-label" for="certifiante"
+                        >Oui</label
+                    >
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="photo_de_profil">Image descriptive</label>
+                <input
+                    type="file"
+                    class="form-control"
+                    id="photo_de_profil"
+                    name="photo_de_profil"
+                />
+            </div>
+
+            <div class="form-group">
+                <label for="videos">Vidéo explicative</label>
+                <input
+                    type="file"
+                    class="form-control"
+                    id="videos"
+                    name="videos"
+                />
+            </div>
+
+            <div class="form-group full-width">
+                <label for="a_apprendre">À apprendre</label>
+                <textarea
+                    class="form-control"
+                    id="a_apprendre"
+                    name="a_apprendre"
+                    rows="3"
+                ></textarea>
+            </div>
+
+            <div class="form-group full-width">
+                <label for="glossaire">Glossaire</label>
+                <textarea
+                    class="form-control"
+                    id="glossaire"
+                    name="glossaire"
+                    rows="3"
+                ></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="nombre_semaine">Nombre de semaines</label>
+                <input
+                    type="number"
+                    class="form-control"
+                    id="nombre_semaine"
+                    name="nombre_semaine"
+                />
+            </div>
+
+            <div class="form-group full-width">
+                <label for="thematiques">Thématiques</label>
+                <select
+                    class="form-select"
+                    id="thematiques"
+                    name="thematiques"
+                    multiple
+                >
+                    <!-- Remplir dynamiquement en Django -->
+                    <option value="">Sélectionner...</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="disponibilite">Disponibilité</label>
+                <select
+                    class="form-select"
+                    id="disponibilite"
+                    name="disponibilite"
+                >
+                    <option value="ouvert">Ouvert pour inscription</option>
+                    <option value="bientot">Bientôt</option>
+                    <option value="en_cours">En cours</option>
+                    <option value="archive">Archivé</option>
+                </select>
+            </div>
+
+            <div class="form-group full-width">
+                <label for="format">Format</label>
+                <textarea
+                    class="form-control"
+                    id="format"
+                    name="format"
+                    rows="2"
+                ></textarea>
+            </div>
+
+            <div class="form-group full-width">
+                <label for="prerequis">Pré-requis</label>
+                <textarea
+                    class="form-control"
+                    id="prerequis"
+                    name="prerequis"
+                    rows="2"
+                ></textarea>
+            </div>
+
+            <div class="form-group full-width">
+                <label for="evaluation_certification"
+                    >Évaluation et certification</label
+                >
+                <textarea
+                    class="form-control"
+                    id="evaluation_certification"
+                    name="evaluation_certification"
+                    rows="2"
+                ></textarea>
+            </div>
+
+            <div class="form-group full-width">
+                <button type="submit" class="btn btn-primary mt-3">
+                    Soumettre
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock %}

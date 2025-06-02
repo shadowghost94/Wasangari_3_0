@@ -310,3 +310,19 @@ def unregistered_user(request, cours_id):
         messages.warning(request, "Vous n'êtes pas inscrit à ce cours !")
 
     return redirect('detail-cours', cours_id=cours.id)
+
+@login_required
+def ajouter_cours(request):
+    return render(request, 'ajouter_un_cours.html')
+
+@login_required
+def ajouter_evenement(request):
+    return render(request, 'ajouter_un_evenement.html')
+
+@login_required
+def ajouter_objet(request):
+    return render(request, 'ajouter_un_objet.html')
+
+@login_required
+def ajouter_image(request):
+    return render(request, 'ajouter_image.html')
