@@ -38,31 +38,30 @@ def apprendre(request):
     
     return render(request, 'apprendre.html', {"cours": cours, "thematiques":thematiques, "langues": langues})
 
-@login_required
+
 def chants_danses(request):
     return render(request, 'chants_danses.html')
 
-@login_required
+
 def ethnies(request):
     return render(request, 'ethnies.html')
 
-@login_required
+
 def langues(request):
     return render(request, 'langues.html')
 
-@login_required
+
 def gastronomie(request):
     return render(request, 'gastronomie.html')
 
-@login_required
+
 def divinites(request):
     return render(request, 'divinites.html')
 
-@login_required
+
 def royaumes(request):
     return render(request, 'royaumes.html')
 
-@login_required
 def patrimoines(request):
     return render(request, 'patrimoines.html')
 
@@ -82,7 +81,6 @@ def learn_something(request, cours_id):
 
     return render(request, 'detail_cours.html', {'cours': cours, 'thematiques': thematiques_du_cours, 'langue': langue, 'is_registered': is_registered, 'user': request.user, 'ce_qua_apprendre': ce_qua_apprendre, 'format': format})
 
-@login_required
 def lecon (request, coursid):
     coursid = coursid
     cours = Cours.objects.get(id=coursid)
@@ -91,49 +89,49 @@ def lecon (request, coursid):
 
     return  render(request, 'lecon.html', {'cours':cours, 'semaines': semaines, 'lecons': lecons})
 
-@login_required
+
 def decouvrir(request):
     return render(request, 'decouvrir0.html')
 
-@login_required
+
 def decouvrirarticle(request):
     return render(request, 'decouvrirarticle.html')
 
 def test(request):
     return render(request, 'testfontawesome.html')
 
-@login_required
+
 def sites(request):
     return render(request, 'sitehistorique.html')
 
-@login_required
+
 def monuments(request):
     return render(request, 'monuments.html')
 
-@login_required
+
 def musees(request):
     return render(request, 'musees.html')
 
-@login_required
+
 def parcs(request):
     return render(request, 'parcs.html')
 
-@login_required
+
 def reserve(request):
     return render(request, 'reserves.html')
 
-@login_required
+
 def acheter(request):
     return render(request, 'acheter.html')
-@login_required
+
 def meeting_details(request):
     return render(request, 'meeting-details.html')
 
-@login_required
+
 def evenements(request):
     return render(request, 'evenements.html')
 
-@login_required
+
 def explorer(request):
     return render(request, 'explorer.html')
 
@@ -256,35 +254,35 @@ def deconnexion(request):
     messages.success(request, 'Vous avez bien été déconecté')
     return redirect('acceuil')
 
-@login_required
+
 def dashboard(request):
     return render(request, 'dashboard.html', {})
 
-@login_required
+
 def article_c_d(request):
     return render(request, 'article_chants_danses.html')
 
-@login_required
+
 def article_ethnie(request):
     return render(request, 'articles_ethnies.html')
 
-@login_required
+
 def articles_langues(request):
     return render(request, 'articles_langues.html')
 
-@login_required
+
 def articles_gastronomie(request):
     return render(request, 'articles_gastronomie.html')
 
-@login_required
+
 def articles_divinites(request):
     return render(request, 'articles_divinites.html')
 
-@login_required
+
 def articles_royaumes(request):
     return render(request, 'articles_royaumes.html')
 
-@login_required
+
 def articles_patrimoines(request):
     return render(request, 'articles_patrimoines.html')
 
