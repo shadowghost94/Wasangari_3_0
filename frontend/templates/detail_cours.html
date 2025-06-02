@@ -43,7 +43,12 @@
                 <a><i class="fa-solid fa-book"></i> Langues: {{langue}}</a>
             </div>
         </div>
-        <video src="{{cours.videos}}" controls width="640" height="360"></video>
+        <video
+            src="https://wasangari-bucket.s3.eu-north-1.amazonaws.com/{{cours.videos}}"
+            controls
+            width="640"
+            height="360"
+        ></video>
         <div class="ce-qua-apprendre">
             <!--Ce que vous allez apprendre-->
             <h2>Ce que vous allez apprendre</h2>
@@ -137,7 +142,10 @@
             <h3>Equipe pédagogique</h3>
             <div>
                 <div class="equipe-pedagogique-image">
-                    <img src="{{user.photo_de_profil}}" alt="" />
+                    <img
+                        src="https://wasangari-bucket.s3.eu-north-1.amazonaws.com/{{user.photo_de_profil}}"
+                        alt=""
+                    />
                     <h4>{{user.first_name}} {{user.last_name}}</h4>
                     <p>{{user.profession}}</p>
                 </div>
