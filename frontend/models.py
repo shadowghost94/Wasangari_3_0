@@ -162,6 +162,17 @@ class Lecon(models.Model):
     def __str__(self):
         return self.titre
 
+class Quiz(models.Model):
+    question = models.CharField(max_length=520, verbose_name="Veuillez entrer votre question ici")
+    reponse1 = models.CharField(max_length=520, verbose_name="Réponse fausse 1")
+    reponse2 = models.CharField(max_length=520, verbose_name="Réponse fausse 2")
+    reponse3 = models.CharField(max_length=520, verbose_name="Réponse fausse 3")
+    reponse_correct = models.CharField(max_length=520, verbose_name="Bonne réponse ici !")
+    semaine = models.ForeignKey(Semaine, on_delete=models.DO_NOTHING, related_name="quizz")
+
+    def __str__(self):
+        return self.question
+
 #Modele gerant l'inscription des utilisateurs
 class Inscription(models.Model):
     STATUT_CHOICES = [

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import User, Ethnies, Langues, Cours, Thematique, Semaine, Lecon
+from .models import User, Ethnies, Langues, Cours, Thematique, Semaine, Lecon, Quiz
 
 # Register your models here.
 class UserAdmin(admin.ModelAdmin):
@@ -24,6 +24,9 @@ class SemaineAdmin(admin.ModelAdmin):
 class LeconAdmin(admin.ModelAdmin):
     list_display = ('titre', 'video', 'pdf', 'semaine')
 
+class QuizAdmin(admin.ModelAdmin):
+    list_display = ('question', 'reponse1', 'reponse2', 'reponse3', 'reponse_correct', 'semaine')
+
 admin.site.register(Thematique, UserThematique)
 admin.site.register(User, UserAdmin)
 admin.site.register(Ethnies, EthniesAdmin)
@@ -31,3 +34,4 @@ admin.site.register(Langues, LanguesAdmin)
 admin.site.register(Cours, CoursAdmin)
 admin.site.register(Semaine, SemaineAdmin)
 admin.site.register(Lecon, LeconAdmin)
+admin.site.register(Quiz, QuizAdmin)
